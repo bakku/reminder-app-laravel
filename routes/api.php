@@ -13,9 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('reminders', 'RemindersController@index');
-
 Route::post('users', 'UsersController@create');
+
+Route::get('reminders', 'RemindersController@index');
 
 Route::get('/reminders/{reminder}', 'RemindersController@show');
 

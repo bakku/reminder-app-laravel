@@ -7,6 +7,11 @@ use App\User;
 
 class UsersController extends Controller
 {
+    public function index()
+    {
+        return User::all();
+    }
+
     public function create(Request $request)
     {
         $this->validate($request, [

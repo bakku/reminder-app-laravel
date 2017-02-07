@@ -6,3 +6,14 @@ services:
       - "8000:80"
     volumes:
       - .:/var/www/html
+    depends_on:
+      - db
+  db:
+    image: "postgres:9.6.1"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=reminder_app_laravel
+    volumes:
+      - ./storage/dockerdb:/var/lib/postgresql/data 
+

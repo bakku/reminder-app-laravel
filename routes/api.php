@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('users', 'UsersController@index')->middleware('auth');
+Route::get('users', 'UsersController@index')->middleware('auth', 'admin');
 
 Route::post('users', 'UsersController@create');
 

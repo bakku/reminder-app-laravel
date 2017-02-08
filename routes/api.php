@@ -24,5 +24,5 @@ Route::get('users/{user_id}', 'UsersController@show')->middleware('auth', 'onlyu
 
 Route::get('users/{user_id}/reminders', 'RemindersController@index')->middleware('auth', 'onlyuser');
 
-Route::get('/reminders/{reminder}', 'RemindersController@show');
+Route::post('users/{user_id}/reminders', 'RemindersController@create')->middleware('auth', 'onlyuser');
 

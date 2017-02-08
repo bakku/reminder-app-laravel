@@ -7,9 +7,9 @@ use App\Reminder;
 
 class RemindersController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, $user_id)
     {
-        $reminders = Reminder::all();
+        $reminders = Reminder::where('user_id', '=', "{$user_id}")->get();
 
         return $reminders;
     }

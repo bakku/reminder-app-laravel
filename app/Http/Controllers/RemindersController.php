@@ -7,7 +7,7 @@ use App\Reminder;
 
 class RemindersController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $reminders = Reminder::all();
 

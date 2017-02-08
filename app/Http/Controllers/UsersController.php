@@ -26,5 +26,14 @@ class UsersController extends Controller
 
         return response('', 201)->header('Location', "/api/users/{$user->id}");
     }
-        
+
+    public function show(Request $request, $user_id)
+    {
+        return User::find($user_id); 
+    }
+
+    public function me(Request $request)
+    {
+        return $request->user();
+    }
 }

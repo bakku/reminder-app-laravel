@@ -13,9 +13,13 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('users', 'UsersController@index')->middleware('auth', 'admin');
+Route::get('users', 'UsersController@index')->middleware('auth', 'onlyadmin');
 
 Route::post('users', 'UsersController@create');
+
+Route::get('users/{user_id}', 'UsersController@show')->middleware('auth', 'onlyuser');
+
+Route::get('users/me', 'UsersController@me')->middlware('auth');
 
 Route::get('reminders', 'RemindersController@index')->middleware('auth');
 

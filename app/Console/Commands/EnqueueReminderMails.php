@@ -42,7 +42,7 @@ class EnqueueReminderMails extends Command
         $reminders = Reminder::where('reminder_date', '<=', Carbon::now())->get();
 
         foreach ($reminders as $reminder) {
-            // enqueue job
+            $this->info("scheduled reminder with ID: {$reminder->id}");
         }
     }
 }

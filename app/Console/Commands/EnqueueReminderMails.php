@@ -3,8 +3,9 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use \App\Reminder;
+use App\Reminder;
 use Carbon\Carbon;
+use App\Jobs\SendReminderEmail;
 
 class EnqueueReminderMails extends Command
 {
@@ -42,6 +43,7 @@ class EnqueueReminderMails extends Command
         $reminders = Reminder::where('reminder_date', '<=', Carbon::now())->get();
 
         foreach ($reminders as $reminder) {
+            dispatch(new SendReminderEmail($reminder));
             $this->info("scheduled reminder with ID: {$reminder->id}");
         }
     }

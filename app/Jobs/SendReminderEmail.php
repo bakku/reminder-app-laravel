@@ -31,6 +31,6 @@ class SendReminderEmail implements ShouldQueue
      */
     public function handle()
     {
-        echo "Send reminder: {$reminder->id}\n";
+        echo "Send reminder: {$this->reminder->id}\n";
     }
 }

@@ -6,7 +6,12 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
+
 use App\Reminder;
+use App\User;
+use App\Mail\ReminderMail;
 
 class SendReminderEmail implements ShouldQueue
 {
@@ -31,6 +36,10 @@ class SendReminderEmail implements ShouldQueue
      */
     public function handle()
     {
-        echo "Send reminder: {$this->reminder->id}\n";
+        $user = User::find($this->reminder->user_id);
+        Mail::to($user->email)->send(new ReminderMail($this->reminder->message));
+        $this->reminder->delete(); 
+
+        Log::info("Send reminder: {$this->reminder->id} to {$user->email}");
     }
 }
